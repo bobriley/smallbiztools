@@ -7,14 +7,9 @@ namespace SBToolsService.Controllers
     [Route("[controller]")]
     public class SmallBusinessController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        private readonly ILogger<SmallBusinessController> _logger;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public SmallBusinessController(ILogger<WeatherForecastController> logger)
+        public SmallBusinessController(ILogger<SmallBusinessController> logger)
         {
             _logger = logger;
         }
