@@ -3,6 +3,7 @@ using SBToolsService.POCOs;
 
 namespace SBToolsService.Controllers
 {
+  
     [ApiController]
     [Route("[controller]")]
     public class SmallBusinessController : ControllerBase

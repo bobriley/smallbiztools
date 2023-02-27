@@ -19,7 +19,7 @@ namespace SBToolsService.POCOs
         public float MiscExpensese { get; set; }
 
         // Valuation Affectors
-        public float SDEMultile { get; set; }
+        public float SDEMultiple { get; set; }
         public float SellableInventory { get; set; }
 
         public float AskingPrice { get; set; }
