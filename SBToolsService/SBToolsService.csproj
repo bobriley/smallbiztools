@@ -17,10 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\css\demo.css">
+    <Content Update="wwwroot\css\main.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\js\demo.js">
+    <Content Update="wwwroot\js\main.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
