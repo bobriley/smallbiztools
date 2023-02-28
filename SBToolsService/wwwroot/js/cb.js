@@ -96,7 +96,7 @@ function showConfirm() {
     $('#smartwizard').smartWizard("fixHeight");
 }
 
-function gatherInfoAndSubmitSmallBusinessInfo() {
+async function gatherInfoAndSubmitSmallBusinessInfo() {
 
     var sbi = new SmallBusinessInfo();   
 
@@ -118,7 +118,15 @@ function gatherInfoAndSubmitSmallBusinessInfo() {
     sbi.sellableInventory = $("#sellable-inventory").val();
     sbi.askingPrice = $("#asking-price").val();
 
-    WSHelper.submitSmallBusinessInfo(sbi);
+    try {
+        var reportData = await WSHelper.submitSmallBusinessInfo(sbi);
+
+        $("#report-body").html(reportData.reportValue);
+    } catch (error) {
+        console.log("error when trying to submit small business info");
+        console.log(error);
+    }
+    
 }
 
 $(function () {

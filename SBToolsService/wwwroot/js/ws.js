@@ -39,12 +39,17 @@ class WSHelper {
         return response.json(); // parses JSON response into native JavaScript objects
     }
 
-    static submitSmallBusinessInfo(smallBusinessInfo) {
+    static async submitSmallBusinessInfo(smallBusinessInfo) {
 
-        this.postData("https://localhost:44366/SmallBusiness", smallBusinessInfo)
-            .then((data) => {
-                console.log(data); // JSON data parsed by `data.json()` call
-            });
+        //this.postData("https://localhost:44366/SmallBusiness", smallBusinessInfo)
+        //    .then((data) => {
+        //        console.log(data); // JSON data parsed by `data.json()` call
+        //        return data;
+        //    });
+
+        const result = await this.postData("https://localhost:44366/SmallBusiness", smallBusinessInfo)
+
+        return result
     }
 }
 
