@@ -17,10 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\css\main.css">
+    <Content Update="wwwroot\css\wizard.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\js\main.js">
+    <Content Update="wwwroot\js\jquery-3.6.3.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\wizard.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
