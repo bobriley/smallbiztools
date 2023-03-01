@@ -29,6 +29,12 @@
     <Content Update="wwwroot\js\jquery-3.6.3.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\js\jquery.printElement.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\jspdf.umd.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\js\wizard.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

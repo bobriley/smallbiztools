@@ -6,6 +6,13 @@
 
 //const $ = jQuery;
 
+//import { jspdf as jsPDF } from "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+//import { jsPDF } from "/js/jspdf.umd.min.js";
+/*import { jsPDF } from "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";*/
+
+//import { PDFDocument, StandardFonts, rgb } from "https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.js";
+
+
 import { WSHelper, SmallBusinessInfo } from "/js/ws.js";
 
 const myModal = new bootstrap.Modal(document.getElementById('confirmModal'));
@@ -51,6 +58,39 @@ function closeModal(reset) {
     }
 
     myModal.hide();
+}
+
+async function printPdf() {    
+ 
+    // Default export is a4 paper, portrait, using millimeters for units
+ //   const doc = new jsPDF();
+//
+    //   doc.fromHTML($("#report-body").html())
+
+    //var printContents = $('#report-body').html();
+    //var originalContents = $('body').html();
+    //$('body').html(printContents);
+    window.print();
+    //$('body').html(originalContents);
+    //location.reload();
+    
+
+
+    //const pdfDoc = await PDFDocument.create();
+    //const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+
+    //const page = pdfDoc.addPage();
+    //const { width, height } = page.getSize();
+    //const fontSize = 30;
+    //page.drawText('Creating PDFs in JavaScript is awesome!', {
+    //    x: 50,
+    //    y: height - 4 * fontSize,
+    //    size: fontSize,
+    //    font: timesRomanFont,
+    //    color: rgb(0, 0.53, 0.71),
+    //});
+
+    //const pdfBytes = await pdfDoc.save();
 }
 
 async function gatherInfoAndSubmitSmallBusinessInfo() {
@@ -213,12 +253,11 @@ $(function () {
 
     const btnFinish = document.getElementById("btnFinish");
     const btnCancel = document.getElementById("btnCancel");
-    const btnCloseResetModal = document.getElementById("close-reset-modal");
-    const btnCloseNoResetModal = document.getElementById("close-noreset-modal");
+    const btnCloseModal = document.getElementById("btn-close-modal");
+    const btnPrintPdf = document.getElementById("btn-print-pdf");
 
     btnFinish.addEventListener("click", onConfirm);
     btnCancel.addEventListener("click", onCancel);
-    btnCloseResetModal.addEventListener("click", onCancel);
-    btnCloseResetModal.addEventListener("click", function(event) { closeModal(true); });
-    btnCloseNoResetModal.addEventListener("click", function(event) { closeModal(false); });
+    btnCloseModal.addEventListener("click", function (event) { closeModal(false); });
+    btnPrintPdf.addEventListener("click", printPdf);
 });
