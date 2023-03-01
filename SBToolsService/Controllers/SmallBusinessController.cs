@@ -18,7 +18,7 @@ namespace SBToolsService.Controllers
         [HttpPut(Name = "ProcessSmallBusinesInfo")]
         public IActionResult ProcessBusinessInfo(SmallBusinessInfo smallBusinessInfo)
         {
-            return new JsonResult(new SmallBusinessReport{ SmallBusinessInfo = smallBusinessInfo, ReportValue=10});
+            return new JsonResult(new SmallBusinessReport{ SmallBusinessInfo = smallBusinessInfo, HealthRatio = 0.1f, PriceDelta=10000, SDE=100000, SDEValuation=20000});
         }
     }
 }

@@ -53,54 +53,11 @@ function closeModal(reset) {
     myModal.hide();
 }
 
-function showConfirm() {
-    const name = $('#first-name').val() + ' ' + $('#last-name').val();
-    const products = $('#sel-products').val();
-    const shipping = $('#address').val() + ' ' + $('#state').val() + ' ' + $('#zip').val();
-    let html = `
-                      <div class="row">
-                        <div class="col">
-                          <h4 class="mb-3-">Customer Details</h4>
-                          <hr class="my-2">
-                          <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                              <label class="col-form-label">Name</label>
-                            </div>
-                            <div class="col-auto">
-                              <span class="form-text-">${name}</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <h4 class="mt-3-">Shipping</h4>
-                          <hr class="my-2">
-                          <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                              <span class="form-text-">${shipping}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <h4 class="mt-3">Products</h4>
-                      <hr class="my-2">
-                      <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                          <span class="form-text-">${products}</span>
-                        </div>
-                      </div>
-
-                      `;
-    $("#order-details").html(html);
-    $('#smartwizard').smartWizard("fixHeight");
-}
-
 async function gatherInfoAndSubmitSmallBusinessInfo() {
 
     var sbi = new SmallBusinessInfo();   
 
-    sbi.businessName = $("#business-name").val();
+    sbi.name = $("#business-name").val();
     sbi.sales = $("#sales").val();
 
     sbi.ownerSalary = $("#owner-salary").val();
@@ -121,15 +78,53 @@ async function gatherInfoAndSubmitSmallBusinessInfo() {
     try {
         var reportData = await WSHelper.submitSmallBusinessInfo(sbi);
 
-        $("#report-body").html(reportData.reportValue);
+        displayReport(reportData);
     } catch (error) {
         console.log("error when trying to submit small business info");
         console.log(error);
-    }
-    
+    }    
 }
 
-$(function () {
+function displayReport(reportData) {
+
+    let reportTitleHtml = `Valuation Report for ${reportData.smallBusinessInfo.name}`;
+
+    $("#modal-report-label").html(reportTitleHtml);
+
+    let reportHtml = `
+                      <div class="row">
+                        <div class="col">
+                          <h4 class="mt-3">SDE<i class="st-tooltip bi bi-question-circle-fill" data-toggle="tooltip" title="Seller's Discretionary Earnings"></i></h4>
+                          <hr class="my-2">
+                          <span>$${reportData.sde.toLocaleString('en-US')}</span>
+                        </div>
+                        <div class="col">
+                          <h4 class="mt-3">Health Ratio<i class="st-tooltip bi bi-question-circle-fill" data-toggle="tooltip" title="Ratio of rent to revenue"></i></h4>
+                          <hr class="my-2">           
+                          <span>${reportData.healthRatio * 100}%</span>
+                        </div>
+                      </div> 
+                    </div>                      
+                    <div class="row">
+                        <div class="col">
+                          <h4 class="mt-3">Val</h4>
+                          <hr class="my-2">
+                          <span>$${reportData.sdeValuation.toLocaleString('en-US') }</span>
+                        </div>
+                        <div class="col">
+                          <h4 class="mt-3">Price Delta</h4>
+                          <hr class="my-2">
+                          <span>$${reportData.priceDelta.toLocaleString('en-US') }</span>
+                        </div>
+                    </div>
+                      `;
+
+    $("#report-body").html(reportHtml);
+
+    $('[data-toggle="tooltip"]').tooltip();
+}
+
+$(function () {   
     // Leave step event is used for validating the forms
     $("#smartwizard").on("leaveStep", function (e, anchorObject, currentStepIdx, nextStepIdx, stepDirection) {
         // Validate only on forward movement
@@ -192,8 +187,7 @@ $(function () {
             showNextButton: true, // show/hide a Next button
             showPreviousButton: true, // show/hide a Previous button
             position: 'bottom', // none/ top/ both bottom
-            //extraHtml: `<button class="btn btn-success" id="btnFinish" disabled onclick="onConfirm()">Calculate Valuation</button>
-            //                      <button class="btn btn-danger" id="btnCancel" onclick="onCancel()">Reset</button>`
+
             extraHtml: `<button class="btn btn-success" id="btnFinish" disabled>Calculate Valuation</button>
                         <button class="btn btn-danger" id="btnCancel">Reset</button>`
         },
