@@ -15,8 +15,8 @@ namespace SBToolsService.POCOs
         // Expenses
         public float Utilities { get; set; }
         public float Rent { get; set; }
-        public float EmployeePayments { get; set; }
-        public float MiscExpensese { get; set; }
+        public float Payroll { get; set; }
+        public float MiscExpenses { get; set; }
 
         // Valuation Affectors
         public float SDEMultiple { get; set; }

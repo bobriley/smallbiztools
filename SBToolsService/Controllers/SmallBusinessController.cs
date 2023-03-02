@@ -18,7 +18,19 @@ namespace SBToolsService.Controllers
         [HttpPut(Name = "ProcessSmallBusinesInfo")]
         public IActionResult ProcessBusinessInfo(SmallBusinessInfo smallBusinessInfo)
         {
-            return new JsonResult(new SmallBusinessReport{ SmallBusinessInfo = smallBusinessInfo, HealthRatio = 0.1f, PriceDelta=10000, SDE=100000, SDEValuation=20000});
+            var healthRatio = (float)smallBusinessInfo.Rent / (float)smallBusinessInfo.Sales;
+
+            var addbacks = smallBusinessInfo.Interest + smallBusinessInfo.Depreciation + smallBusinessInfo.OwnerPersonalExpenses;
+            var expenses = smallBusinessInfo.Rent + smallBusinessInfo.Utilities + smallBusinessInfo.MiscExpenses;
+            var ebitda = smallBusinessInfo.Sales - expenses;
+            var sde = ebitda + expenses - addbacks;
+
+            var sdeValuation = sde * smallBusinessInfo.SDEMultiple;
+
+            var priceDelta = smallBusinessInfo.AskingPrice - sdeValuation;
+
+            return new JsonResult(new SmallBusinessReport{ SmallBusinessInfo = smallBusinessInfo, HealthRatio = healthRatio, 
+                                                           PriceDelta = priceDelta, SDE=sde, SDEValuation = sdeValuation });
         }
     }
 }

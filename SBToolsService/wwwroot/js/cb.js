@@ -130,36 +130,12 @@ function displayReport(reportData) {
     let reportTitleHtml = `Valuation Report for ${reportData.smallBusinessInfo.name}`;
 
     $("#modal-report-label").html(reportTitleHtml);
-
-    let reportHtml = `
-                      <div class="row">
-                        <div class="col">
-                          <h4 class="mt-3">SDE<i class="st-tooltip bi bi-question-circle-fill" data-toggle="tooltip" title="Seller's Discretionary Earnings"></i></h4>
-                          <hr class="my-2">
-                          <span>$${reportData.sde.toLocaleString('en-US')}</span>
-                        </div>
-                        <div class="col">
-                          <h4 class="mt-3">Health Ratio<i class="st-tooltip bi bi-question-circle-fill" data-toggle="tooltip" title="Ratio of rent to revenue"></i></h4>
-                          <hr class="my-2">           
-                          <span>${reportData.healthRatio * 100}%</span>
-                        </div>
-                      </div> 
-                    </div>                      
-                    <div class="row">
-                        <div class="col">
-                          <h4 class="mt-3">Val</h4>
-                          <hr class="my-2">
-                          <span>$${reportData.sdeValuation.toLocaleString('en-US') }</span>
-                        </div>
-                        <div class="col">
-                          <h4 class="mt-3">Price Delta</h4>
-                          <hr class="my-2">
-                          <span>$${reportData.priceDelta.toLocaleString('en-US') }</span>
-                        </div>
-                    </div>
-                      `;
-
-    $("#report-body").html(reportHtml);
+    
+    //$("#report-body").html(reportHtml);
+    $("#report-sde").html(`$${reportData.sde.toLocaleString('en-US')}`);
+    $("#report-health-ratio").html(`${Math.round(reportData.healthRatio * 100)}%`);
+    $("#report-sde-valution").html(`$${reportData.sdeValuation.toLocaleString('en-US')}`);
+    $("#report-price-delta").html(`$${reportData.priceDelta.toLocaleString('en-US')}`);
 
     $('[data-toggle="tooltip"]').tooltip();
 }
