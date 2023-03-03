@@ -416,94 +416,163 @@
 
     <!-- Confirm Modal -->
     <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="modal-report-label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal-report-label">Business Report</h5>
+                    <h5 class="modal-title">Business Valuation Report - taminglife.com</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div id="report-body" class="modal-body">
-                    <div class="row">
+                    <div class="row mb-2">
+                        <div class="col-1">
+                        </div>
                         <div class="col">
-                            <h4 class="mt-3">Sales</h4>
-                            <hr class="my-2">
-                            <span id="report-sales">n/a</span>
+                            <div class="col">
+                                <h3 class="text-center fw-bold"><span id="report-business-name"></span> Valuation</h3>
+                                <hr class="my-2">
+                            </div>
+                        </div>
+                        <div class="col-1">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <h4 class="mt-3">Owner Salary</h4>
-                            <hr class="my-2">
-                            <span id="report-owner-salary">n/a</span>
+                        <div class="col-1">
                         </div>
-                        <div class="col">
-                            <h4 class="mt-3">Depreciation</h4>
-                            <hr class="my-2">
-                            <span id="report-depreciation">n/a</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="mt-3">Interest</h4>
-                            <hr class="my-2">
-                            <span id="report-interest">n/a</span>
-                        </div>
-                        <div class="col">
-                            <h4 class="mt-3">Personal Expenses</h4>
-                            <hr class="my-2">
-                            <span id="report-owner-personal-expenses">n/a</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="mt-3">Utilities</h4>
-                            <hr class="my-2">
-                            <span id="report-utilities">n/a</span>
-                        </div>
-                        <div class="col">
-                            <h4 class="mt-3">Rent</h4>
-                            <hr class="my-2">
-                            <span id="report-rent">n/a</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="mt-3">Payroll</h4>
-                            <hr class="my-2">
-                            <span id="report-payroll">n/a</span>
-                        </div>
-                        <div class="col">
-                            <h4 class="mt-3">Miscellanous Expenses</h4>
-                            <hr class="my-2">
-                            <span id="report-misc-expenses">n/a</span>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col">
                             <h4 class="mt-3">SDE<i class="st-tooltip bi bi-question-circle-fill" data-toggle="tooltip" title="Seller's Discretionary Earnings"></i></h4>
                             <hr class="my-2">
                             <span id="report-sde">n/a</span>
+                        </div>
+                        <div class="col-1">
                         </div>
                         <div class="col">
                             <h4 class="mt-3">Health Ratio<i class="st-tooltip bi bi-question-circle-fill" data-toggle="tooltip" title="Ratio of rent to revenue"></i></h4>
                             <hr class="my-2">
                             <span id="report-health-ratio">n/a</span>
                         </div>
+                        <div class="col-1">
+                        </div>
                     </div>
                     <div class="row">
+                        <div class="col-1">
+                        </div>
                         <div class="col">
                             <h4 class="mt-3">Valuation</h4>
                             <hr class="my-2">
                             <span id="report-sde-valution">n/a</span>
+                        </div>
+                        <div class="col-1">
                         </div>
                         <div class="col">
                             <h4 class="mt-3">Price Delta</h4>
                             <hr class="my-2">
                             <span id="report-price-delta">n/a</span>
                         </div>
+                        <div class="col-1">
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-5 text-center fw-bold">Information</h4>
+                            <hr class="my-2">
+                        </div>
+                        <div class="col-1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-3">Name</h4>
+                            <hr class="my-2">
+                            <span>n/a</span>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-3">Sales</h4>
+                            <hr class="my-2">
+                            <span id="report-sales">n/a</span>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-3">Owner Salary</h4>
+                            <hr class="my-2">
+                            <span id="report-owner-salary">n/a</span>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-3">Depreciation</h4>
+                            <hr class="my-2">
+                            <span id="report-depreciation">n/a</span>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-3">Interest</h4>
+                            <hr class="my-2">
+                            <span id="report-interest">n/a</span>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-3">Personal Expenses</h4>
+                            <hr class="my-2">
+                            <span id="report-owner-personal-expenses">n/a</span>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-3">Utilities</h4>
+                            <hr class="my-2">
+                            <span id="report-utilities">n/a</span>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-3">Rent</h4>
+                            <hr class="my-2">
+                            <span id="report-rent">n/a</span>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-3">Payroll</h4>
+                            <hr class="my-2">
+                            <span id="report-payroll">n/a</span>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col">
+                            <h4 class="mt-3">Miscellaneous Expenses</h4>
+                            <hr class="my-2">
+                            <span id="report-misc-expenses">n/a</span>
+                        </div>
+                        <div class="col-1">
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="mt-4 modal-footer">
                     <button type="button" class="btn btn-secondary" id="btn-print-pdf">Print PDF</button>
                     <button type="button" class="btn btn-secondary" id="btn-close-modal">Close</button>
 

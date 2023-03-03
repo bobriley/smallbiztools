@@ -127,11 +127,21 @@ async function gatherInfoAndSubmitSmallBusinessInfo() {
 
 function displayReport(reportData) {
 
-    let reportTitleHtml = `Valuation Report for ${reportData.smallBusinessInfo.name}`;
+    //let reportTitleHtml = `Valuation Report for ${reportData.smallBusinessInfo.name}`;
 
-    $("#modal-report-label").html(reportTitleHtml);
+    $("#report-business-name").html(reportData.smallBusinessInfo.name);
     
-    //$("#report-body").html(reportHtml);
+
+    $("#report-sales").html(`$${reportData.smallBusinessInfo.sales.toLocaleString('en-US')}`);
+    $("#report-owner-salary").html(`$${reportData.smallBusinessInfo.ownerSalary.toLocaleString('en-US')}`);
+    $("#report-interest").html(`$${reportData.smallBusinessInfo.interest.toLocaleString('en-US')}`);
+    $("#report-personal-expenses").html(`$${reportData.smallBusinessInfo.ownerPersonalExpenses.toLocaleString('en-US')}`);
+
+    $("#report-utilities").html(`$${reportData.smallBusinessInfo.utilities.toLocaleString('en-US')}`);
+    $("#report-rent").html(`$${reportData.smallBusinessInfo.rent.toLocaleString('en-US')}`);
+    $("#report-payroll").html(`$${reportData.smallBusinessInfo.payroll.toLocaleString('en-US')}`);
+    $("#report-misc-expenses").html(`$${reportData.smallBusinessInfo.miscExpenses.toLocaleString('en-US')}`);
+
     $("#report-sde").html(`$${reportData.sde.toLocaleString('en-US')}`);
     $("#report-health-ratio").html(`${Math.round(reportData.healthRatio * 100)}%`);
     $("#report-sde-valution").html(`$${reportData.sdeValuation.toLocaleString('en-US')}`);
