@@ -11,12 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\sbt.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="wwwroot\css\main.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

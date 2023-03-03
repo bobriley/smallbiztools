@@ -60,39 +60,6 @@ function closeModal(reset) {
     myModal.hide();
 }
 
-async function printPdf() {    
- 
-    // Default export is a4 paper, portrait, using millimeters for units
- //   const doc = new jsPDF();
-//
-    //   doc.fromHTML($("#report-body").html())
-
-    //var printContents = $('#report-body').html();
-    //var originalContents = $('body').html();
-    //$('body').html(printContents);
-    window.print();
-    //$('body').html(originalContents);
-    //location.reload();
-    
-
-
-    //const pdfDoc = await PDFDocument.create();
-    //const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
-
-    //const page = pdfDoc.addPage();
-    //const { width, height } = page.getSize();
-    //const fontSize = 30;
-    //page.drawText('Creating PDFs in JavaScript is awesome!', {
-    //    x: 50,
-    //    y: height - 4 * fontSize,
-    //    size: fontSize,
-    //    font: timesRomanFont,
-    //    color: rgb(0, 0.53, 0.71),
-    //});
-
-    //const pdfBytes = await pdfDoc.save();
-}
-
 async function gatherInfoAndSubmitSmallBusinessInfo() {
 
     var sbi = new SmallBusinessInfo();   
@@ -129,13 +96,16 @@ function displayReport(reportData) {
 
     //let reportTitleHtml = `Valuation Report for ${reportData.smallBusinessInfo.name}`;
 
+    //$("#report-title").html(`${reportData.smallBusinessInfo.name} Valuation = $${reportData.sdeValuation.toLocaleString('en-US')}`);
+    $("#report-title").html(reportData.smallBusinessInfo.name);
     $("#report-business-name").html(reportData.smallBusinessInfo.name);
     
 
     $("#report-sales").html(`$${reportData.smallBusinessInfo.sales.toLocaleString('en-US')}`);
     $("#report-owner-salary").html(`$${reportData.smallBusinessInfo.ownerSalary.toLocaleString('en-US')}`);
+    $("#report-depreciation").html(`$${reportData.smallBusinessInfo.depreciation.toLocaleString('en-US')}`);
     $("#report-interest").html(`$${reportData.smallBusinessInfo.interest.toLocaleString('en-US')}`);
-    $("#report-personal-expenses").html(`$${reportData.smallBusinessInfo.ownerPersonalExpenses.toLocaleString('en-US')}`);
+    $("#report-owner-personal-expenses").html(`$${reportData.smallBusinessInfo.ownerPersonalExpenses.toLocaleString('en-US')}`);
 
     $("#report-utilities").html(`$${reportData.smallBusinessInfo.utilities.toLocaleString('en-US')}`);
     $("#report-rent").html(`$${reportData.smallBusinessInfo.rent.toLocaleString('en-US')}`);
@@ -144,10 +114,28 @@ function displayReport(reportData) {
 
     $("#report-sde").html(`$${reportData.sde.toLocaleString('en-US')}`);
     $("#report-health-ratio").html(`${Math.round(reportData.healthRatio * 100)}%`);
-    $("#report-sde-valution").html(`$${reportData.sdeValuation.toLocaleString('en-US')}`);
-    $("#report-price-delta").html(`$${reportData.priceDelta.toLocaleString('en-US')}`);
+    $("#report-sde-valuation").html(`$${reportData.sdeValuation.toLocaleString('en-US')}`);
+    //$("#report-price-delta").html(`$${reportData.priceDelta.toLocaleString('en-US')}`);
+    $("#report-sde-multiple").html(`${reportData.smallBusinessInfo.sdeMultiple}`);
+
 
     $('[data-toggle="tooltip"]').tooltip();
+}
+
+function printElement(elem) {
+    var domClone = elem.cloneNode(true);
+
+    var $printSection = document.getElementById("printSection");
+
+    if (!$printSection) {
+        var $printSection = document.createElement("div");
+        $printSection.id = "printSection";
+        document.body.appendChild($printSection);
+    }
+
+    $printSection.innerHTML = "";
+
+    $printSection.appendChild(domClone);
 }
 
 $(function () {   
@@ -245,5 +233,5 @@ $(function () {
     btnFinish.addEventListener("click", onConfirm);
     btnCancel.addEventListener("click", onCancel);
     btnCloseModal.addEventListener("click", function (event) { closeModal(false); });
-    btnPrintPdf.addEventListener("click", printPdf);
+    btnPrintPdf.addEventListener("click", function (event) { window.print(); });
 });

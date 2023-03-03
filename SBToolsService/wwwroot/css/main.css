@@ -5,7 +5,67 @@
     color: #808080
 }
 
-#confirmModal {
-/*    max-width: 800px;
-    margin:auto;*/
+
+@media screen {
+    .div-footer {
+        display:none;
+    }
+
+    .st-report-section-header {
+        background-color: grey;
+        color: white;
+    }
+}
+
+@media print {
+
+    .st-report-section-header {
+        font-weight:bold;
+        font-size: 1.7em;
+    }
+
+    /* on modal open bootstrap adds class "modal-open" to body, so you can handle that case and hide body */
+    body.modal-open, body.modal-open .modal .modal-header {
+        visibility: hidden;        
+    }
+
+    body.modal-open .modal .modal-header {
+        display: none;
+    }
+        
+    /*  body.modal-open .modal .modal-header,*/
+        body.modal-open .modal .modal-body {
+            visibility: visible; /* make visible modal body and header */
+            width: 800px;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .div-footer {
+        visibility: visible; /* make visible modal body and header */
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .bi {
+        display:none;
+    }
+
+    hr {
+        display: block;
+        height: 1px;
+        background: transparent;
+        width: 100%;
+        border: none;
+        border-top: solid 1px #aaa;
+    }
 }
