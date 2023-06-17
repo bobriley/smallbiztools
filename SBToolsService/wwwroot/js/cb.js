@@ -119,7 +119,7 @@ function displayReport(reportData) {
     $("#report-sde-multiple").html(`${reportData.smallBusinessInfo.sdeMultiple}`);
 
 
-    $('[data-toggle="tooltip"]').tooltip();
+  //  $('[data-toggle="tooltip"]').tooltip();
 }
 
 function printElement(elem) {
@@ -139,6 +139,9 @@ function printElement(elem) {
 }
 
 $(function () {   
+
+    $('[data-toggle="tooltip"]').tooltip();
+
     // Leave step event is used for validating the forms
     $("#smartwizard").on("leaveStep", function (e, anchorObject, currentStepIdx, nextStepIdx, stepDirection) {
         // Validate only on forward movement

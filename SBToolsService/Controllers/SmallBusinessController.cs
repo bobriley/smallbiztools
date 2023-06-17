@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SBToolsService.POCOs;
+using SBToolsService.RequestObjects;
+using SBToolsService.ServiceInterfaces;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SBToolsService.Controllers
 {
@@ -9,27 +13,44 @@ namespace SBToolsService.Controllers
     public class SmallBusinessController : ControllerBase
     {
         private readonly ILogger<SmallBusinessController> _logger;
+        private ITokenService _tokenService;
 
-        public SmallBusinessController(ILogger<SmallBusinessController> logger)
+        public SmallBusinessController(ILogger<SmallBusinessController> logger, ITokenService tokenService)
         {
             _logger = logger;
+            _tokenService = tokenService;
         }
 
-        [HttpPut(Name = "ProcessSmallBusinesInfo")]
-        public IActionResult ProcessBusinessInfo(SmallBusinessInfo smallBusinessInfo)
+        [HttpPut()]
+        public IActionResult ProcessBusinessInfo(SmallBusinessInfoRequestData requestData)
         {
-            var healthRatio = (float)smallBusinessInfo.Rent / (float)smallBusinessInfo.Sales;
+            float healthRatio = 0;
+            float priceDelta = 0;
+            float sde = 0;
+            float sdeValuation = 0;
 
-            var addbacks = smallBusinessInfo.Interest + smallBusinessInfo.Depreciation + smallBusinessInfo.OwnerPersonalExpenses;
-            var expenses = smallBusinessInfo.Rent + smallBusinessInfo.Utilities + smallBusinessInfo.MiscExpenses;
-            var ebitda = smallBusinessInfo.Sales - expenses;
-            var sde = ebitda + expenses - addbacks;
+            if(requestData == null)
+            {
+                requestData = new SmallBusinessInfoRequestData();
+            }
 
-            var sdeValuation = sde * smallBusinessInfo.SDEMultiple;
+            if (_tokenService.IsTokenValid(requestData.Token))
+            {
+                healthRatio = (float)requestData.SmallBusinessInfo.Rent / (float)requestData.SmallBusinessInfo.Sales;
 
-            var priceDelta = smallBusinessInfo.AskingPrice - sdeValuation;
+                var addbacks = requestData.SmallBusinessInfo.Interest + requestData.SmallBusinessInfo.Depreciation + requestData.SmallBusinessInfo.OwnerPersonalExpenses;
+                var expenses = requestData.SmallBusinessInfo.Rent + requestData.SmallBusinessInfo.Utilities + requestData.SmallBusinessInfo.MiscExpenses;
 
-            return new JsonResult(new SmallBusinessReport{ SmallBusinessInfo = smallBusinessInfo, HealthRatio = healthRatio, 
+                var ebitda = requestData.SmallBusinessInfo.Sales - expenses;
+                
+                sde = ebitda + expenses - addbacks;
+
+                sdeValuation = sde * requestData.SmallBusinessInfo.SDEMultiple;
+
+                priceDelta = requestData.SmallBusinessInfo.AskingPrice - sdeValuation;
+            }
+            
+            return new JsonResult(new SmallBusinessReport{ SmallBusinessInfo = requestData.SmallBusinessInfo, HealthRatio = healthRatio, 
                                                            PriceDelta = priceDelta, SDE=sde, SDEValuation = sdeValuation });
         }
     }

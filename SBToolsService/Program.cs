@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.Extensions.ObjectPool;
 using Microsoft.OpenApi.Models;
+using SBToolsService.ServiceInterfaces;
+using SBToolsService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,19 +28,31 @@ builder.Services.AddSwaggerGen(options =>
     }) ;
 });
 
-var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddScoped<ITokenService, TokenService>();
+
+//var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      pb  =>
-                      {
-                          pb.AllowAnyOrigin().AllowAnyMethod();
-                         // policy.WithOrigins("http://example.com",
-                       //                       "http://www.contoso.com");
-                      });
-});
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(name: MyAllowSpecificOrigins,
+//                      pb  =>
+//                      {
+//                          pb.AllowAnyOrigin().AllowAnyMethod();
+//                         // policy.WithOrigins("http://example.com",
+//                       //                       "http://www.contoso.com");
+//                      });
+//});
+
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAll", builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+    });
 
 
 var app = builder.Build();
@@ -52,13 +66,16 @@ if (app.Environment.IsDevelopment())
 
 
 
-app.UseCors(MyAllowSpecificOrigins);
+//app.UseCors(MyAllowSpecificOrigins);
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 //app.UseStaticFiles();
 
